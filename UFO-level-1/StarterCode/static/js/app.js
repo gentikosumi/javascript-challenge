@@ -15,35 +15,21 @@ function buildTable(ufos) {
 
 // buildTable(tableData);
 
-
-
-function handleClick(event) {
-  
+function handleClick() {
   var button = d3.select("#filter-btn");
 
-  tbody.html("")
   var inputDate = d3.select("#datetime");
 
   var inputValue = inputDate.property("value");
-  
+  console.log(typeof inputValue);
+  console.log(data);
+
   // filter
-  var filteredDate = data.filter(date => date.datetime === inputValue);
+  var filteredDate = data.filter(data => data.datetime === inputValue);
   console.log(filteredDate);
-}
 
-// buildTable(filtereddate);
-// const tbody = d3.select("tbody")
-  
+  buildTable(filteredDate);
 
-function buildTable(filteredDate) {
-  
-  filteredDate.forEach(rowData => {
-    var row = tbody.append("tr");
-    Object.values(rowData).forEach(val => {
-      let cell = row.append("td");
-      cell.text(val);
-    });
-  });
 }
 
 d3.selectAll("#filter-btn").on("click", handleClick);
